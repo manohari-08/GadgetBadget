@@ -61,8 +61,7 @@ public String readproduct()
  {return "Error while connecting to the database for reading."; }
  
  // Prepare the html table to be displayed
- output = "<table border='1'><tr><th>product Code</th><th>product Name</th>" +
- "<th>product Price</th>" +
+ output = "<table border='1'><tr><th>product Code</th><th>product Name</th>" +"<th>product Price</th>" +
  "<th>product Description</th>" +
  "<th>Update</th><th>Remove</th></tr>";
 
@@ -75,16 +74,17 @@ public String readproduct()
  // iterate through the rows in the result set
  while (rs.next())
  {
-// String productID = Integer.toString(rs.getInt("productID"));
- String productCode = rs.getString("productCode");
- String productName = rs.getString("productName");
- String productPrice = Double.toString(rs.getDouble("productPrice"));
- String productDesc = rs.getString("productDesc");
+
+ String code = rs.getString("code");
+ String name = rs.getString("name");
+ String price = Double.toString(rs.getDouble("price"));
+ String desc = rs.getString("desc");
+ 
  // Add into the html table
- output += "<tr><td>" + productCode + "</td>";
- output += "<td>" + productName + "</td>";
- output += "<td>" + productPrice + "</td>";
- output += "<td>" + productDesc + "</td>";
+ output += "<tr><td>" + code + "</td>";
+ output += "<td>" + name + "</td>";
+ output += "<td>" + price + "</td>";
+ output += "<td>" + desc + "</td>";
  // buttons
  output += "<td> <input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>" + "<td><form method='post' action='product.jsp'>" + "<input name='btnRemove' type='submit' value='Remove'class='btn btn-danger'>" + "</form></td></tr>";
  }
@@ -99,7 +99,7 @@ public String readproduct()
  }
  return output;
  }
-public String updateproduct(String ID, String code, String name, String price, String desc)
+public String updateproduct(String code, String name, String price, String desc)
 {
 	 String output = "";
 	 try
@@ -107,15 +107,23 @@ public String updateproduct(String ID, String code, String name, String price, S
 	 Connection con = connect();
 	 if (con == null)
 	 {return "Error while connecting to the database for updating."; }
-	 // create a prepared statement
-	 String query = "UPDATE product SET productCode=?,productName=?,productPrice=?,productDesc=? WHERE productID=?";
+	 
+	 
+	 
+	 
+	 
+	 // create a prepared statement update
+	 
+	 
+	 String query = "UPDATE producttable SET name=?,price=?,desc=? WHERE code=?";
 	 PreparedStatement preparedStmt = con.prepareStatement(query);
 	 // binding values
 	 preparedStmt.setString(1, code);
 	 preparedStmt.setString(2, name);
 	 preparedStmt.setDouble(3, Double.parseDouble(price));
 	 preparedStmt.setString(4, desc);
-	 preparedStmt.setInt(5, Integer.parseInt(ID));
+
+	 
 	 // execute the statement
 	 preparedStmt.execute();
 	 con.close();
@@ -128,7 +136,7 @@ public String updateproduct(String ID, String code, String name, String price, S
 	 }
 	 return output;
 	 }
-	public String deleteproduct(String productID)
+	public String deleteproduct(String code)
 	 {
 	 String output = "";
 	 try
@@ -136,11 +144,18 @@ public String updateproduct(String ID, String code, String name, String price, S
 	 Connection con = connect();
 	 if (con == null)
 	 {return "Error while connecting to the database for deleting."; }
-	 // create a prepared statement
-	 String query = "delete from product where productID=?";
+	 
+	 
+	 
+	 
+	 
+	 
+	 // create a prepared statement for delete
+	 
+	 String query = "delete from producttable where code=?";
 	 PreparedStatement preparedStmt = con.prepareStatement(query);
 	 // binding values
-	 preparedStmt.setInt(1, Integer.parseInt(productID));
+	 preparedStmt.setInt(1, Integer.parseInt(code));
 	 // execute the statement
 	 preparedStmt.execute();
 	 con.close();
