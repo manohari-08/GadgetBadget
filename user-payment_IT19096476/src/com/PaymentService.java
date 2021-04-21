@@ -34,6 +34,28 @@ public class PaymentService {
 	String output = paymentObj.makePayment(paymentID, buyerID, sellerID, productID, Ammount, Date);
 	return output;
 	}
+	
+	@DELETE
+	@Path("/")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteUser(String userData)
+	{
+	//Convert the input string to an XML document
+	Document doc = Jsoup.parse(userData, "", Parser.xmlParser());
+	//Read the value from the element <itemID>
+	String userID = doc.select("paymentID").text();
+	String output = paymentObj.canclePayment(userID);
+	return output;
+	}
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readAllUser()
+	{
+	return paymentObj.getAllPayment();
+	}
 
 
 
