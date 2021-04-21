@@ -152,7 +152,7 @@ public class fund{
 		 }
 		 catch (Exception e)
 		 {
-		 output = "Error while deleting the fund.";
+		 output = "Error while deleting the fundmanagement.";
 		 System.err.println(e.getMessage());
 		 }
 		 return output;
