@@ -17,13 +17,13 @@ import org.jsoup.nodes.Document;
 public class fundService
 {
 fund fundObj = new fund();
-//@GET
-//@Path("/")
-//@Produces(MediaType.TEXT_HTML)
-//public String readItems()
-//{
-//return "Hello";
-//}
+@GET
+@Path("/")
+@Produces(MediaType.TEXT_HTML)
+public String readItems()
+{
+return fundObj.readfund();
+}
 @POST
 @Path("/")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -38,14 +38,7 @@ String output = fundObj.insertfund(ID, Funders_name, Project_name, Amount);
 return output;
 }
 
-public String readfund(@FormParam("ID") String ID,
-@FormParam("Funders_name") String Funders_name,
-@FormParam("Project_name") String Project_name,
-@FormParam("Amount") String Amount)
-{
-String output = fundObj.readfund(ID, Funders_name, Project_name, Amount);
-return output;
-}
+
 
 }
 
