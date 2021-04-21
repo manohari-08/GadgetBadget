@@ -141,7 +141,7 @@ public class fund{
 		 if (con == null)
 		 {return "Error while connecting to the database for deleting."; }
 		 // create a prepared statement
-		 String query = "delete from items where ID=?";
+		 String query = "delete from fundmanagement  where ID=?";
 		 PreparedStatement preparedStmt = con.prepareStatement(query);
 		 // binding values
 		 preparedStmt.setInt(1, Integer.parseInt(ID));
