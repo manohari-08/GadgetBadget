@@ -144,6 +144,10 @@ public String updateproduct(String code, String name, String price, String desc)
 	 }
 	 return output;
 	 }
+
+
+
+//delete
 	public String deleteproduct(String code)
 	 {
 	 String output = "";
@@ -152,10 +156,6 @@ public String updateproduct(String code, String name, String price, String desc)
 	 Connection con = connect();
 	 if (con == null)
 	 {return "Error while connecting to the database for deleting."; }
-	 
-	 
-	 
-	 
 	 
 	 
 	 // create a prepared statement for delete
