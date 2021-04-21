@@ -15,16 +15,16 @@ import org.jsoup.nodes.Document;
 
 @Path("/fund")
 public class fundService
-{
-fund fundObj = new fund();
-@GET
-@Path("/")
-@Produces(MediaType.TEXT_HTML)
-public String readItems()
-{
+	{
+	fund fundObj = new fund();
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readItems()
+	{
 	
 return fundObj.readfund();
-}
+	}
 
 //@Path("/fund")
 //public class fundService
@@ -44,18 +44,18 @@ return fundObj.readfund();
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.TEXT_PLAIN)
 public String updatefund(String userData)
-{
-//Convert the input string to a JSON object
-JsonObject userObject = new JsonParser().parse(userData).getAsJsonObject();
-//Read the values from the JSON object
-String ID = userObject.get("ID").getAsString();
-String Funders_name = userObject.get("Funders_name").getAsString();
-String Project_name = userObject.get("Project_name").getAsString();
-String Amount = userObject.get("Amount").getAsString();
+	{
+	//Convert the input string to a JSON object
+	JsonObject userObject = new JsonParser().parse(userData).getAsJsonObject();
+	//Read the values from the JSON object
+	String ID = userObject.get("ID").getAsString();
+	String Funders_name = userObject.get("Funders_name").getAsString();
+	String Project_name = userObject.get("Project_name").getAsString();
+	String Amount = userObject.get("Amount").getAsString();
 
-String output = fundObj.updatefund(ID, Funders_name, Project_name,Amount );
-return output;
-}
+	String output = fundObj.updatefund(ID, Funders_name, Project_name,Amount );
+	return output;
+	}
 
 
 @DELETE
@@ -64,13 +64,13 @@ return output;
 @Produces(MediaType.TEXT_PLAIN)
 public String deletefund(String userData)
 {
-//Convert the input string to an XML document
-Document doc = Jsoup.parse(userData, "", Parser.xmlParser());
-//Read the value from the element <itemID>
-String ID = doc.select("ID").text();
-String output = fundObj.deletefund(ID);
-return output;
-}
+	//Convert the input string to an XML document
+	Document doc = Jsoup.parse(userData, "", Parser.xmlParser());
+	//Read the value from the element <itemID>
+	String ID = doc.select("ID").text();
+	String output = fundObj.deletefund(ID);
+	return output;
+	}
 
 
 //
@@ -101,12 +101,12 @@ return output;
 @Produces(MediaType.TEXT_PLAIN)
 
 public String insertfund(@FormParam("ID") String ID,
-@FormParam("Funders_name") String Funders_name,
-@FormParam("Project_name") String Project_name,
-@FormParam("Amount") String Amount)
-{
-String output = fundObj.insertfund(ID, Funders_name, Project_name, Amount);
-return output;
+		@FormParam("Funders_name") String Funders_name,
+		@FormParam("Project_name") String Project_name,
+		@FormParam("Amount") String Amount)
+	{
+	String output = fundObj.insertfund(ID, Funders_name, Project_name, Amount);
+	return output;
 }
 
 

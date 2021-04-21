@@ -110,7 +110,7 @@ public class fund{
 			 if (con == null)
 			 {return "Error while connecting to the database for updating."; }
 			 // create a prepared statement
-			 String query = "UPDATE fundmanagement SET Funders_name=?,Project_name=?,Amount=?,WHERE ID=?";
+			 String query = "UPDATE fundmanagement SET Funders_name=?,Project_name=?,Amount=? WHERE ID=?";
 			 PreparedStatement preparedStmt = con.prepareStatement(query);
 			 // binding values
 			 preparedStmt.setString(1, Funders_name);
