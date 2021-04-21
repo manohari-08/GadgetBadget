@@ -16,6 +16,12 @@ private Connection connect()
  {e.printStackTrace();}
  return con;
  }
+
+
+
+
+
+//insert
 public String insertproduct(String code, String name, String price, String desc)
  {
  String output = "";
@@ -24,15 +30,17 @@ public String insertproduct(String code, String name, String price, String desc)
  Connection con = connect();
  if (con == null)
  {return "Error while connecting to the database for inserting."; }
+ 
  // create a prepared statement
  String query = " insert into producttable(`code`, `name`, `price`, `desc`)" + " values (?, ?, ?, ?)";
  PreparedStatement preparedStmt = con.prepareStatement(query);
+
  // binding values
-// preparedStmt.setInt(1, 0);
  preparedStmt.setString(1, code);
  preparedStmt.setString(2, name);
  preparedStmt.setDouble(3, Double.parseDouble(price));
  preparedStmt.setString(4, desc);
+ 
 // execute the statement
  preparedStmt.execute();
  con.close();
@@ -47,9 +55,10 @@ public String insertproduct(String code, String name, String price, String desc)
  }
 
 
+
+
+
 //read
-
-
 
 public String readproduct()
  {
@@ -61,9 +70,7 @@ public String readproduct()
  {return "Error while connecting to the database for reading."; }
  
  // Prepare the html table to be displayed
- output = "<table border='1'><tr><th>product Code</th><th>product Name</th>" +"<th>product Price</th>" +
- "<th>product Description</th>" +
- "<th>Update</th><th>Remove</th></tr>";
+ output = "<table border='1'><tr><th>product Code</th><th>product Name</th>" +"<th>product Price</th>" +"<th>product Description</th>" +"<th>Update</th><th>Remove</th></tr>";
 
  String query = "select * from producttable";
  Statement stmt = con.createStatement();
@@ -99,6 +106,10 @@ public String readproduct()
  }
  return output;
  }
+
+
+
+//update
 public String updateproduct(String code, String name, String price, String desc)
 {
 	 String output = "";
@@ -107,9 +118,6 @@ public String updateproduct(String code, String name, String price, String desc)
 	 Connection con = connect();
 	 if (con == null)
 	 {return "Error while connecting to the database for updating."; }
-	 
-	 
-	 
 	 
 	 
 	 // create a prepared statement update

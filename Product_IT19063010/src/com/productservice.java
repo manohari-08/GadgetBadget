@@ -27,6 +27,7 @@ public class productservice {
 	{
 		 return productObj.readproduct();
 		 }
+	
 	//insert(add,post)
 	@POST
 	@Path("/")
@@ -41,6 +42,14 @@ public class productservice {
 	return output;
 	}
 	
+	//read
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readproduct()
+	 {
+	 return productObj.readproduct();
+	 }
 	
 	
 	//update(get)
@@ -54,8 +63,8 @@ public class productservice {
 	//Convert the input string to a JSON object
 	 JsonObject productObject = new JsonParser().parse(productData).getAsJsonObject();
 	 
+	 
 	//Read the values from the JSON object
-
 	 String code = productObject.get("code").getAsString();
 	 String name = productObject.get("name").getAsString();
 	 String price = productObject.get("price").getAsString();
