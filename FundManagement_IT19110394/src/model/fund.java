@@ -96,5 +96,66 @@ public class fund{
 		 System.err.println(e.getMessage());
 		 }
 		 return output;
+		 }
+		
+		//update part
+		
+		public String updatefund(String ID, String Funders_name, String Project_name, String Amount)
+		
+		{
+			 String output = "";
+			 try
+			 {
+			 Connection con = connect();
+			 if (con == null)
+			 {return "Error while connecting to the database for updating."; }
+			 // create a prepared statement
+			 String query = "UPDATE fundmanagement SET Funders_name=?,Project_name=?,Amount=?,WHERE ID=?";
+			 PreparedStatement preparedStmt = con.prepareStatement(query);
+			 // binding values
+			 preparedStmt.setString(1, Funders_name);
+			 preparedStmt.setString(2, Project_name);
+			 preparedStmt.setString(3, Amount);
+			 preparedStmt.setInt(4, Integer.parseInt(ID));
+			 // execute the statement
+			 preparedStmt.execute();
+			 con.close();
+			 output = "Updated successfully";
+			 }
+			 catch (Exception e)
+			 {
+			 output = "Error while updating the fund.";
+			 System.err.println(e.getMessage());
+			 }
+			 return output;
+			 }
+		
+		//delete
+		
+		public String deletefund(String ID)
+		 {
+		 String output = "";
+		 try
+		 {
+		 Connection con = connect();
+		 if (con == null)
+		 {return "Error while connecting to the database for deleting."; }
+		 // create a prepared statement
+		 String query = "delete from items where ID=?";
+		 PreparedStatement preparedStmt = con.prepareStatement(query);
+		 // binding values
+		 preparedStmt.setInt(1, Integer.parseInt(ID));
+		 // execute the statement
+		 preparedStmt.execute();
+		 con.close();
+		 output = "Deleted successfully";
+		 }
+		 catch (Exception e)
+		 {
+		 output = "Error while deleting the fund.";
+		 System.err.println(e.getMessage());
+		 }
+		 return output;
 		 } 
+		
 	 }
