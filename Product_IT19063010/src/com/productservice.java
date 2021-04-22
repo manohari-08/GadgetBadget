@@ -18,77 +18,103 @@ import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
 @Path("/product")
+
+//PRODUCT SERVICE CALL
 public class productservice {
 	product productObj = new product();
-	@GET
-	@Path("/product")
-	@Produces(MediaType.TEXT_HTML)
+@GET
+@Path("/product")
+@Produces(MediaType.TEXT_HTML)
 	public String readproducts()
 	{
 		 return productObj.readproduct();
 		 }
 	
-	//insert(add,post)
-	@POST
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
+//----------------------------------------------------------------------------------
+	
+//INSERT(ADD,POST)
+@POST
+@Path("/")
+@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+@Produces(MediaType.TEXT_PLAIN)
 	public String insertproduct(@FormParam("code") String code,
-	@FormParam("name") String name,
-	@FormParam("price") String price,
-	@FormParam("desc") String desc)
+			@FormParam("name") String name,
+			@FormParam("price") String price,
+			@FormParam("desc") String desc)
 	{
-	String output = productObj.insertproduct(code, name,price, desc);
+		String output = productObj.insertproduct(code, name,price, desc);
 	return output;
-	}
+		}
 	
-	//read
-	@GET
-	@Path("/")
-	@Produces(MediaType.TEXT_HTML)
-	public String readproduct()
+
+
+//----------------------------------------------------------------------------------
+
+//READ(GET)
+@GET
+@Path("/")
+@Produces(MediaType.TEXT_HTML)
+		public String readproduct()
 	 {
-	 return productObj.readproduct();
-	 }
+	 		return productObj.readproduct();
+	 		}
 	
 	
-	//update(get)
-	@PUT
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateproduct(String productData)
+//----------------------------------------------------------------------------------
+//
+////UPDATE(PUT)
+//@PUT
+//@Path("/")
+//@Consumes(MediaType.APPLICATION_JSON)
+//@Produces(MediaType.TEXT_PLAIN)
+//		public String updateproduct(String productData)
+//	{
+//		
+////CONVERT THE INPUT STRING TO JSON OBJECT
+//	 JsonObject productObject = new JsonParser().parse(productData).getAsJsonObject();
+//	 
+////READ THE VALUES FROM THE JSON OBJECT
+//	 String code = productObject.get("code").getAsString();
+//	 String name = productObject.get("name").getAsString();
+//	 String price = productObject.get("price").getAsString();
+//	 String desc = productObject.get("desc").getAsString();
+//	 String output = productObj.updateproduct(code, name, price,desc);
+//	 	return output;
+//	}
+
+@PUT
+@Path("/")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.TEXT_PLAIN)
+public String updateProduct(String Data)
+{
+//Convert the input string to a JSON object
+JsonObject Object = new JsonParser().parse(Data).getAsJsonObject();
+//Read the values from the JSON object
+String code = Object.get("code").getAsString();
+String name = Object.get("name").getAsString();
+String price = Object.get("price").getAsString();
+String desc = Object.get("desc").getAsString();
+String output = productObj.updateProduct(code, name, price, desc);
+return output;
+}
+
+//----------------------------------------------------------------------------------	
+
+//DELETE 
+@DELETE
+@Path("/")
+@Consumes(MediaType.APPLICATION_XML)
+@Produces(MediaType.TEXT_PLAIN)
+		public String deleteproduct(String productData)
 	{
-		
-	//Convert the input string to a JSON object
-	 JsonObject productObject = new JsonParser().parse(productData).getAsJsonObject();
-	 
-	 
-	//Read the values from the JSON object
-	 String code = productObject.get("code").getAsString();
-	 String name = productObject.get("name").getAsString();
-	 String price = productObject.get("price").getAsString();
-	 String desc = productObject.get("desc").getAsString();
-	 String output = productObj.updateproduct(code, name, price,desc);
-	return output;
-	}
-	
-	
-	
-	//delete
-	@DELETE
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteproduct(String productData)
-	{
-	//Convert the input string to an XML document
+//CONVERT THE INPUT STRING TO AN XML
 	 Document doc = Jsoup.parse(productData, "", Parser.xmlParser());
 
-	//Read the value from the element <productID>
+//READ THE VALUE FROM THE ELEMENT <PRODUCTCODE>
 	 String code = doc.select("code").text();
 	 String output = productObj.deleteproduct(code);
-	return output;
+	 	return output;
 	}
 	
 }
