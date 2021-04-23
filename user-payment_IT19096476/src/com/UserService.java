@@ -67,6 +67,14 @@ public class UserService {
 	String output = userObj.deleteUser(userID);
 	return output;
 	}
+	
+	@GET
+	@Path("/")
+	@Produces(MediaType.TEXT_HTML)
+	public String readAllUser()
+	{
+	return userObj.readAllUser();
+	}
 
 	
 }
