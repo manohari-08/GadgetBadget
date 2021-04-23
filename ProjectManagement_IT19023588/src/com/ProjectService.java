@@ -32,11 +32,17 @@ public class ProjectService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
 	@Produces(MediaType.TEXT_PLAIN) 
 	public String insertItem(@FormParam("ProjId") String ProjId, 
-	 @FormParam("ProjTitle") String ProjTitle, 
-	 @FormParam("projDesc") String projDesc) 
+							 @FormParam("ProjTitle") String ProjTitle, 
+							 @FormParam("projDesc") String projDesc,
+							 @FormParam("location") String location,
+							 @FormParam("sector") String sector,
+							 @FormParam("projOwner") String projOwner,
+							 @FormParam("projStage") String projStage,
+							 @FormParam("projectBudget") String projectBudget
+							 ) 
 	{ 
-	 String output = projObj.insertProj(ProjId, ProjTitle, projDesc); 
-	return output; 
+		 String output = projObj.insertProj(ProjId, ProjTitle, projDesc,location,sector,projOwner,projStage,projectBudget); 
+		 return output; 
 	}
 	
 	
@@ -53,9 +59,13 @@ public class ProjectService {
 		 String ProjId = projectObject.get("ProjId").getAsString(); 
 		 String ProjTitle = projectObject.get("ProjTitle").getAsString(); 
 		 String projDesc = projectObject.get("projDesc").getAsString(); 
-//		 String itemPrice = projectObject.get("itemPrice").getAsString(); 
-//		 String itemDesc = projectObject.get("itemDesc").getAsString(); 
-		 String output = projObj.updateProject(ProjId, ProjTitle, projDesc); 
+		 String location = projectObject.get("location").getAsString();
+		 String sector = projectObject.get("sector").getAsString(); 
+		 String projOwner = projectObject.get("projOwner").getAsString();
+		 String projStage = projectObject.get("projStage").getAsString();
+		 String projectBudget = projectObject.get("projectBudget").getAsString();
+		 
+		 String output = projObj.updateProject(ProjId, ProjTitle, projDesc,location,sector,projOwner,projStage,projectBudget); 
 		 return output; 
 	}
 	

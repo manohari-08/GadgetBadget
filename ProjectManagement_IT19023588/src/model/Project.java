@@ -24,7 +24,7 @@ public class Project {
 		
 		
 		//Insert Project Details
-		public String insertProj(String ProjId, String ProjTitle, String projDesc){
+		public String insertProj(String ProjId, String ProjTitle, String projDesc,String location,String sector , String projOwner, String projStage, String projectBudget){
 			String output = "";
 			try
 			{
@@ -35,7 +35,7 @@ public class Project {
 				
 				
 				// create a prepared statement
-				String query = " insert into project(`ProjId`,`ProjTitle`,`projDesc`)"+ " values (?, ?, ?)";
+				String query = " insert into project(`ProjId`,`ProjTitle`,`projDesc`,`location`,`sector`,`projOwner`,`projStage`,`projectBudget`)"+ " values (?, ?, ?,?,?,?,?,?)";
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 				
 				
@@ -44,7 +44,11 @@ public class Project {
 				 preparedStmt.setString(1, ProjId);
 				 preparedStmt.setString(2, ProjTitle);
 				 preparedStmt.setString(3, projDesc);
-				 //preparedStmt.setString(5, desc);
+				 preparedStmt.setString(4, location);
+				 preparedStmt.setString(5, sector);
+				 preparedStmt.setString(6, projOwner);
+				 preparedStmt.setString(7, projStage);
+				 preparedStmt.setDouble(8, Double.parseDouble(projectBudget)); 
 				 
 				 // execute the statement
 				 preparedStmt.execute();
@@ -73,7 +77,14 @@ public class Project {
 				output = "<table border='1'><tr><th>Project ID</th>" +
 						 "<th>Project Title</th>" +
 						 "<th>project Description</th>" +
-						 "<th>Update</th><th>Remove</th></tr>";
+						 "<th>project Location</th>" +
+						 "<th>project Sector</th>" +
+						 "<th>project Owner</th>" +
+						 "<th>project Stage</th>" +
+						 "<th>project Budget</th>" +
+						 "<th>Update</th>"+
+						 "<th>Remove</th>"+ 
+						 "</tr>";
 	
 				 String query = "select * from project";
 				 Statement stmt = con.createStatement();
@@ -86,13 +97,22 @@ public class Project {
 					 String ProjId = rs.getString("ProjId");
 					 String ProjTitle = rs.getString("ProjTitle");
 					 String projDesc = rs.getString("projDesc");
-			//		 String itemPrice = Double.toString(rs.getDouble("itemPrice"));
+					 String location = rs.getString("location");
+					 String sector = rs.getString("sector");
+					 String projOwner = rs.getString("projOwner");
+					 String projStage = rs.getString("projStage");
+					 String projectBudget = Double.toString(rs.getDouble("projectBudget"));
 			//		 String itemDesc = rs.getString("itemDesc");
 					 
 					 // Add into the html table
 					 output += "<tr><td>" + ProjId + "</td>";
 					 output += "<td>" + ProjTitle + "</td>";
 					 output += "<td>" + projDesc + "</td>";
+					 output += "<td>" + location + "</td>";
+					 output += "<td>" + sector + "</td>";
+					 output += "<td>" + projOwner + "</td>";
+					 output += "<td>" + projStage + "</td>";
+					 output += "<td>" + projectBudget + "</td>";
 			//		 output += "<td>" + itemDesc + "</td>";
 					 
 					 
@@ -117,7 +137,7 @@ public class Project {
 		
 		
 		
-		public String updateProject(String ProjId, String ProjTitle, String projDesc){ 
+		public String updateProject(String ProjId, String ProjTitle, String projDesc,String location,String sector , String projOwner, String projStage, String projectBudget){ 
 			String output = ""; 
 			try{
 				Connection con = connect(); 
@@ -126,14 +146,19 @@ public class Project {
 				} 
 				
 				 // create a prepared statement
-				 String query = "UPDATE project SET ProjTitle=?,projDesc=? WHERE ProjId=?";
+				 String query = "UPDATE project SET ProjTitle=?,projDesc=?,location=?,sector=?,projOwner=?,projStage=?,projectBudget=? WHERE ProjId=?";
 				 PreparedStatement preparedStmt = con.prepareStatement(query); 
 				 
 				 // binding values
 				  
 				 preparedStmt.setString(1, ProjTitle); 
 				 preparedStmt.setString(2, projDesc); 
-				 preparedStmt.setString(3, ProjId);
+				 preparedStmt.setString(3, location);
+				 preparedStmt.setString(4, sector);
+				 preparedStmt.setString(5, projOwner);
+				 preparedStmt.setString(6, projStage);
+				 preparedStmt.setDouble(7, Double.parseDouble(projectBudget)); 
+				 preparedStmt.setString(8, ProjId);
 				 
 //				 preparedStmt.setString(4, desc); 
 //				 preparedStmt.setInt(5, Integer.parseInt(ID)); 
