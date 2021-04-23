@@ -61,43 +61,28 @@ public class productservice {
 	
 	
 //----------------------------------------------------------------------------------
-//
-////UPDATE(PUT)
-//@PUT
-//@Path("/")
-//@Consumes(MediaType.APPLICATION_JSON)
-//@Produces(MediaType.TEXT_PLAIN)
-//		public String updateproduct(String productData)
-//	{
-//		
-////CONVERT THE INPUT STRING TO JSON OBJECT
-//	 JsonObject productObject = new JsonParser().parse(productData).getAsJsonObject();
-//	 
-////READ THE VALUES FROM THE JSON OBJECT
-//	 String code = productObject.get("code").getAsString();
-//	 String name = productObject.get("name").getAsString();
-//	 String price = productObject.get("price").getAsString();
-//	 String desc = productObject.get("desc").getAsString();
-//	 String output = productObj.updateproduct(code, name, price,desc);
-//	 	return output;
-//	}
 
+//UPDATE(PUT)
 @PUT
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.TEXT_PLAIN)
-public String updateProduct(String Data)
-{
-//Convert the input string to a JSON object
-JsonObject Object = new JsonParser().parse(Data).getAsJsonObject();
-//Read the values from the JSON object
-String code = Object.get("code").getAsString();
-String name = Object.get("name").getAsString();
-String price = Object.get("price").getAsString();
-String desc = Object.get("desc").getAsString();
-String output = productObj.updateProduct(code, name, price, desc);
-return output;
-}
+		public String updateproduct(String productData)
+	{
+		
+//CONVERT THE INPUT STRING TO JSON OBJECT
+	 JsonObject productObject = new JsonParser().parse(productData).getAsJsonObject();
+	 
+//READ THE VALUES FROM THE JSON OBJECT
+	 String code = productObject.get("code").getAsString();
+	 String name = productObject.get("name").getAsString();
+	 String price = productObject.get("price").getAsString();
+	 String desc = productObject.get("desc").getAsString();
+	 String output = productObj.updateproduct(code, name, price,desc);
+	 	return output;
+	}
+
+
 
 //----------------------------------------------------------------------------------	
 

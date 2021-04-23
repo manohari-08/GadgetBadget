@@ -114,73 +114,44 @@ private Connection connect()
 	//----------------------------------------------------------------------------------
 	
 //
-////UPDATE THE PRODUCT
-//public String updateproduct(String code, String name, String price, String desc)
-//{
-//	 String output = "";
-//	 	try
-//	 {
-//	 Connection con = connect();
-//	 	if (con == null)
-//	 	{return "Error while connecting to the database for updating."; }
-//	 
-//	 
-////	 String query = "UPDATE producttable SET name=?,price=?,desc=? WHERE code=?";
-//	 	String query ="UPDATE producttable SET name=?,price=?,desc=? WHERE code=?";
-//	 PreparedStatement preparedStmt = con.prepareStatement(query);
-//	 
-//// VALUES
-//	 
-//	 preparedStmt.setString(1, name);
-//	 preparedStmt.setDouble(2, Double.parseDouble(price));
-//	 preparedStmt.setString(3, desc);
-//	 preparedStmt.setString(4, code);
-//	
-//	
-//	 
-////EXECUTE THE STATEMENT
-//	 preparedStmt.execute();
-//	 con.close();
-//	 output = "Updated successfully";
-// }
-//	 	catch (Exception e)
-//	 {
-//	 output = "Error while updating the product.";
-//	 System.err.println(e.getMessage());
-// }
-//	 		return output;
-//	 		}
+//UPDATE THE PRODUCT
+public String updateproduct(String code, String name, String price, String desc)
+{
+	 String output = "";
+	 	try
+	 {
+	 Connection con = connect();
+	 	if (con == null)
+	 	{return "Error while connecting to the database for updating."; }
+	 
+	 
+//	 String query = "UPDATE producttable SET name=?,price=?,desc=? WHERE code=?";
+	 	String query ="UPDATE producttable SET name=?,price=?,desc=? WHERE code=?";
+	 PreparedStatement preparedStmt = con.prepareStatement(query);
+	 
+// VALUES
+	 
+	 preparedStmt.setString(1, name);
+	 preparedStmt.setDouble(2, Double.parseDouble(price));
+	 preparedStmt.setString(3, desc);
+	 preparedStmt.setString(4, code);
+	
+	
+	 
+//EXECUTE THE STATEMENT
+	 preparedStmt.execute();
+	 con.close();
+	 output = "Updated successfully";
+ }
+	 	catch (Exception e)
+	 {
+	 output = "Error while updating the product.";
+	 System.err.println(e.getMessage());
+ }
+	 		return output;
+	 		}
 
-	public String updateProduct( String code, String name, String price, String desc)
-	{
-	String output = "";
-	try
-	{
-	Connection con = connect();
-	if (con == null)
-	{return "Error while connecting to the database for updating."; }
-	// create a prepared statement
-	String query = "UPDATE product SET name=?,price=?,desc=? WHERE code=?";
-	PreparedStatement preparedStmt = con.prepareStatement(query);
-	// binding values
-
-	preparedStmt.setString(1, name);
-	preparedStmt.setDouble(2, Double.parseDouble(price));
-	preparedStmt.setString(3, desc);
-	preparedStmt.setString(4, code);
-	// preparedStmt.setInt(5, Integer.parseInt(ID));
-	// execute the statement
-	preparedStmt.execute();
-	con.close();
-	output = "Updated successfully";
-	}
-	catch (Exception e)
-	{
-	output = "Error while updating the item.";
-	System.err.println(e.getMessage());
-	}
-	return output;
-	}
+	
 	
 
 	
