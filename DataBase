@@ -1,0 +1,194 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 25, 2021 at 05:01 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `paf_project`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fundmanagement`
+--
+
+CREATE TABLE `fundmanagement` (
+  `ID` int(10) NOT NULL,
+  `Funders_name` varchar(20) NOT NULL,
+  `Project_name` varchar(30) NOT NULL,
+  `Amount` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fundmanagement`
+--
+
+INSERT INTO `fundmanagement` (`ID`, `Funders_name`, `Project_name`, `Amount`) VALUES
+(2, 'mihih', 'uh', 844),
+(3, 'mihih', 'uh', 844),
+(4, 'mihih', 'uh', 844),
+(5, 'mihih', 'uh', 844),
+(6, 'mihih', 'uh', 844);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `paymentID` int(11) NOT NULL,
+  `buyerID` int(11) NOT NULL,
+  `sellerID` int(11) NOT NULL,
+  `productID` int(11) NOT NULL,
+  `Ammount` varchar(255) NOT NULL,
+  `Date` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`paymentID`, `buyerID`, `sellerID`, `productID`, `Ammount`, `Date`) VALUES
+(0, 12, 21, 11, '100000', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `producttable`
+--
+
+CREATE TABLE `producttable` (
+  `code` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` double NOT NULL,
+  `desc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `producttable`
+--
+
+INSERT INTO `producttable` (`code`, `name`, `price`, `desc`) VALUES
+('2', 'ashani', 600, 'vvvv'),
+('333', 'ravi', 100, 'nothing'),
+('56', 'sara', 56.67, 'fyhgjk'),
+('89', 'mano', 100, 'nnn'),
+('t99', 'mano', 100, 'nnn');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project`
+--
+
+CREATE TABLE `project` (
+  `ProjId` int(11) NOT NULL,
+  `ProjTitle` varchar(255) NOT NULL,
+  `projDesc` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `sector` varchar(255) NOT NULL,
+  `projOwner` varchar(255) NOT NULL,
+  `projStage` varchar(255) NOT NULL,
+  `projectBudget` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`ProjId`, `ProjTitle`, `projDesc`, `location`, `sector`, `projOwner`, `projStage`, `projectBudget`) VALUES
+(0, 'Innovation', 'none', 'colombo', 'Medical', 'Kavindu', 'planing', '10000.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_`
+--
+
+CREATE TABLE `user_` (
+  `userID` int(11) NOT NULL,
+  `LastName` varchar(255) DEFAULT NULL,
+  `FirstName` varchar(255) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
+  `Country` varchar(255) DEFAULT NULL,
+  `ContactNumber` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_`
+--
+
+INSERT INTO `user_` (`userID`, `LastName`, `FirstName`, `Email`, `Password`, `Country`, `ContactNumber`) VALUES
+(1, 'ss', '33', 'dddd', 'wee', 'UAE', '0202');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `fundmanagement`
+--
+ALTER TABLE `fundmanagement`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`paymentID`);
+
+--
+-- Indexes for table `producttable`
+--
+ALTER TABLE `producttable`
+  ADD PRIMARY KEY (`code`);
+
+--
+-- Indexes for table `project`
+--
+ALTER TABLE `project`
+  ADD PRIMARY KEY (`ProjId`);
+
+--
+-- Indexes for table `user_`
+--
+ALTER TABLE `user_`
+  ADD PRIMARY KEY (`userID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `fundmanagement`
+--
+ALTER TABLE `fundmanagement`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user_`
+--
+ALTER TABLE `user_`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
